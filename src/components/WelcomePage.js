@@ -38,7 +38,7 @@ class WelcomePage extends React.Component {
         <AppBar>
           <Toolbar>
             <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-              DogeCodes React Chat
+              React Chatik
             </Typography>
           </Toolbar>
         </AppBar>

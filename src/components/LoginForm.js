@@ -76,7 +76,7 @@ class LoginForm extends React.Component {
         />
         <Button
           fullWidth
-          variant="raised"
+          variant="contained"
           type="submit"
           color="primary"
           className={classes.signUpButton}
