@@ -1,4 +1,4 @@
-import * as types from '../constants/auth';
+import * as types from '../constants';
 
 const token = localStorage.getItem('token')
 
@@ -27,7 +27,7 @@ export default function auth(state = initialState, action) {
     case types.SIGNUP_FAILURE:
     case types.LOGIN_FAILURE:
     case types.RECIEVE_AUTH_FAILURE:
-    case types.LOGOUT_FAILURE:
+    case types.LOGOUT_SUCCESS:
       return {
         ...state,
         isAuthenticated: false,

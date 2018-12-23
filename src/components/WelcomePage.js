@@ -26,6 +26,10 @@ class WelcomePage extends React.Component {
     activeTab: 0,
   }
 
+  componentDidMount() {
+    this.props.recieveAuth();
+  }
+
   handleTabChange = (event, value) => {
     this.setState({ activeTab: value });
   }

@@ -4,9 +4,9 @@ import getColor from "../utils/color-from";
 import titleInitials from "../utils/title-initials";
 
 const Avatar = ({children, colorFrom, ...rest}) => (
-    <MUIAvatar style={{backgroundColor: getColor(colorFrom)}} {...rest}>
-      {titleInitials(children)}
-    </MUIAvatar>
-)
+  <MUIAvatar style={{backgroundColor: getColor(colorFrom)}} {...rest}>
+    {titleInitials(children)}
+  </MUIAvatar>
+);
 
-export default Avatar
+export default Avatar;
