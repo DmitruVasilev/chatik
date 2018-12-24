@@ -1,4 +1,4 @@
-import * as types from '../constants/chats';
+import * as types from "../constants/chats";
 
 const initialState = [];
 
@@ -11,4 +11,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};

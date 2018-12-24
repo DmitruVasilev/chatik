@@ -1,15 +1,16 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core';
-import Avatar from './Avatar';
-import ChatMenu from './ChatMenu';
-import UserMenu from './UserMenu'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Avatar from "./Avatar";
+import ChatMenu from "./ChatMenu";
+import UserMenu from "./UserMenu";
 
-const styles = theme => ({
+const styles = (theme) => ({
   appBar: {
-    position: 'fixed',
+    position: "fixed",
     width: `calc(100% - 320px)`,
     marginLeft: 320,
   },
@@ -18,21 +19,19 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     color: theme.palette.secondary.contrastText,
-  }
+  },
 });
 
 class ChatHeader extends React.Component {
   render() {
-    const { classes, activeUser, activeChat, logout, leaveChat, deleteChat, editUser } = this.props;
+    const {classes, activeUser, activeChat, logout, leaveChat, deleteChat, editUser} = this.props;
 
     return (
       <AppBar color="primary" className={classes.appBar}>
         <Toolbar color="contrast">
           {activeChat ? (
             <React.Fragment>
-              <Avatar colorFrom={activeChat._id}>
-                {activeChat.title}
-              </Avatar>
+              <Avatar colorFrom={activeChat._id}>{activeChat.title}</Avatar>
               <Typography variant="title" className={classes.appBarTitle}>
                 {activeChat.title}
                 <ChatMenu
@@ -47,15 +46,21 @@ class ChatHeader extends React.Component {
               DogeCodes React Chat
             </Typography>
           )}
-          <UserMenu
-            activeUser={activeUser}
-            onLogoutClick={logout}
-            onEditProfileClick={editUser}
-          />
+          <UserMenu activeUser={activeUser} onLogoutClick={logout} onEditProfileClick={editUser} />
         </Toolbar>
       </AppBar>
     );
   }
+}
+
+ChatHeader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  activeChat: PropTypes.object,
+  activeUser: PropTypes.object,
+  logout: PropTypes.func.isRequired,
+  leaveChat: PropTypes.func.isRequired,
+  deleteChat: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ChatHeader);

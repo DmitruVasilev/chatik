@@ -1,48 +1,49 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-const styles = theme => ({
+const styles = (theme) => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class LoginForm extends React.Component {
   state = {
     username: {
-      value: '',
+      value: "",
       isValid: true,
     },
     password: {
-      value: '',
+      value: "",
       isValid: true,
     },
-  }
+  };
 
   handleInputChange = (event) => {
     event.persist();
-    const {value, name} = event.target
+    const {value, name} = event.target;
     this.setState((prevState) => ({
       [name]: {
         ...prevState[name],
         value,
       },
     }));
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { username, password } = this.state;
+    const {username, password} = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
   render() {
-    const { classes } = this.props;
-    const { username, password } = this.state;
+    const {classes} = this.props;
+    const {username, password} = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -72,18 +73,17 @@ class LoginForm extends React.Component {
           onChange={this.handleInputChange}
           error={!password.isValid}
         />
-        <Button
-          fullWidth
-          variant="contained"
-          type="submit"
-          color="primary"
-          className={classes.signUpButton}
-        >
+        <Button fullWidth variant="contained" type="submit" color="primary" className={classes.signUpButton}>
           Login
         </Button>
       </form>
     );
   }
 }
+
+LoginForm.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(LoginForm);

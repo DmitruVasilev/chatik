@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import MUIAvatar from "@material-ui/core/Avatar";
 import getColor from "../utils/color-from";
 import titleInitials from "../utils/title-initials";
@@ -8,5 +9,11 @@ const Avatar = ({children, colorFrom, ...rest}) => (
     {titleInitials(children)}
   </MUIAvatar>
 );
+
+Avatar.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  colorFrom: PropTypes.string,
+  rest: PropTypes.objectOf(PropTypes.string),
+};
 
 export default Avatar;

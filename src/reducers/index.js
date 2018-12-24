@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
-import auth from './auth';
-import chats from './chats';
-import messages from './messages';
+import {combineReducers} from "redux";
+import auth from "./auth";
+import chats from "./chats";
+import messages from "./messages";
 
 export default combineReducers({
   auth,
@@ -22,14 +22,10 @@ export const isCreator = (state, chat) => {
 
 export const isMember = (state, chat) => {
   try {
-    return chat.members.some(
-      member => getUserId(member) === getUserId(getActiveUser(state))
-    );
+    return chat.members.some((member) => getUserId(member) === getUserId(getActiveUser(state)));
   } catch (e) {
     return false;
   }
 };
 
-export const isChatMember = (state, chat) => {
-  return isCreator(state, chat) || isMember(state, chat);
-}
+export const isChatMember = (state, chat) => isCreator(state, chat) || isMember(state, chat);

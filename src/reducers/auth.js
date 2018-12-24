@@ -1,6 +1,6 @@
-import * as types from '../constants';
+import * as types from "../constants";
 
-const token = localStorage.getItem('token')
+const token = localStorage.getItem("token");
 
 const initialState = {
   isAuthenticated: !!token,
@@ -32,7 +32,7 @@ export default function auth(state = initialState, action) {
         ...state,
         isAuthenticated: false,
         user: null,
-        token: '',
+        token: "",
       };
     default:
       return state;

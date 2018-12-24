@@ -1,52 +1,53 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-const styles = theme => ({
+const styles = (theme) => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class SignupForm extends React.Component {
   state = {
     username: {
-      value: '',
+      value: "",
       isValid: true,
     },
     password: {
-      value: '',
+      value: "",
       isValid: true,
     },
     repeatedPassword: {
-      value: '',
+      value: "",
       isValid: true,
     },
-  }
+  };
 
   validate = () => {
-    const { password, repeatedPassword } = this.state;
+    const {password, repeatedPassword} = this.state;
     const isValid = password.value === repeatedPassword.value;
 
     this.setState({
-      password: { ...password, isValid },
-      repeatedPassword: { ...repeatedPassword, isValid },
+      password: {...password, isValid},
+      repeatedPassword: {...repeatedPassword, isValid},
     });
 
     return isValid;
-  }
+  };
 
   handleInputChange = (event) => {
     event.persist();
-    const {value, name} = event.target
+    const {value, name} = event.target;
     this.setState((prevState) => ({
       [name]: {
         ...prevState[name],
         value,
       },
     }));
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -55,14 +56,14 @@ class SignupForm extends React.Component {
       return;
     }
 
-    const { username, password } = this.state;
+    const {username, password} = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
   render() {
-    const { classes } = this.props;
-    const { username, password, repeatedPassword } = this.state;
+    const {classes} = this.props;
+    const {username, password, repeatedPassword} = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -105,18 +106,17 @@ class SignupForm extends React.Component {
           onChange={this.handleInputChange}
           error={!repeatedPassword.isValid}
         />
-        <Button
-          fullWidth
-          variant="contained"
-          type="submit"
-          color="primary"
-          className={classes.signUpButton}
-        >
+        <Button fullWidth variant="contained" type="submit" color="primary" className={classes.signUpButton}>
           Signup
         </Button>
       </form>
     );
   }
 }
+
+SignupForm.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(SignupForm);
