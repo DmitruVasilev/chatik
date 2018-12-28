@@ -35,14 +35,12 @@ class ChatPage extends React.Component {
     leaveChat: PropTypes.func.isRequired,
     deleteChat: PropTypes.func.isRequired,
     sendMessage: PropTypes.func.isRequired,
-    messages: PropTypes.arrayOf(
-      PropTypes.shape({
-        chatId: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        sender: PropTypes.object.isRequired,
-        createdAt: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      sender: PropTypes.object.isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })).isRequired,
     editUser: PropTypes.func.isRequired,
     error: PropTypes.instanceOf(Error),
     isConnected: PropTypes.bool.isRequired,

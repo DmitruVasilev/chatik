@@ -43,14 +43,12 @@ const Chat = ({
 
 Chat.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      chatId: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      sender: PropTypes.object.isRequired,
-      createdAt: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    chatId: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    sender: PropTypes.object.isRequired,
+    createdAt: PropTypes.string.isRequired,
+  })).isRequired,
   activeChat: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

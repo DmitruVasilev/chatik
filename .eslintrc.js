@@ -8,5 +8,6 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'no-underscore-dangle': 'off',
     'react/destructuring-assignment': 'off',
+    'no-mixed-operators': 'off',
   },
 };

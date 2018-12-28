@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  Router, Route, Switch, Redirect,
-} from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from '../containers/PrivateRoute';
 import ChatPage from '../containers/ChatPage';
 import WelcomePage from '../containers/WelcomePage';

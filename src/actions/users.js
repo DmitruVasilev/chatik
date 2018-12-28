@@ -24,13 +24,15 @@ export function editUser({ username, firstName, lastName }) {
         data: { username, firstName, lastName },
       },
     )
-      .then(json => dispatch({
-        type: types.EDIT_USER_SUCCESS,
-        payload: json,
-      }))
-      .catch(reason => dispatch({
-        type: types.EDIT_USER_FAILURE,
-        payload: reason,
-      }));
+      .then(json =>
+        dispatch({
+          type: types.EDIT_USER_SUCCESS,
+          payload: json,
+        }))
+      .catch(reason =>
+        dispatch({
+          type: types.EDIT_USER_FAILURE,
+          payload: reason,
+        }));
   };
 }

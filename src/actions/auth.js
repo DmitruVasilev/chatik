@@ -35,10 +35,11 @@ export function signup(username, password) {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.SIGNUP_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.SIGNUP_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -76,10 +77,11 @@ export function login(username, password) {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.LOGIN_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.LOGIN_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -106,10 +108,11 @@ export function logout() {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.LOGOUT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.LOGOUT_FAILURE,
+          payload: reason,
+        }));
   };
 }
 
@@ -122,13 +125,15 @@ export function recieveAuth() {
     });
 
     return callApi('/users/me', token)
-      .then(json => dispatch({
-        type: types.RECIEVE_AUTH_SUCCESS,
-        payload: json,
-      }))
-      .catch(reason => dispatch({
-        type: types.RECIEVE_AUTH_FAILURE,
-        payload: reason,
-      }));
+      .then(json =>
+        dispatch({
+          type: types.RECIEVE_AUTH_SUCCESS,
+          payload: json,
+        }))
+      .catch(reason =>
+        dispatch({
+          type: types.RECIEVE_AUTH_FAILURE,
+          payload: reason,
+        }));
   };
 }

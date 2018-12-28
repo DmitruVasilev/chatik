@@ -21,14 +21,12 @@ const styles = theme => ({
 class ChatMessageList extends React.Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    messages: PropTypes.arrayOf(
-      PropTypes.shape({
-        chatId: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        sender: PropTypes.object.isRequired,
-        createdAt: PropTypes.string.isRequired,
-      }),
-    ),
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      sender: PropTypes.object.isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })),
     match: PropTypes.shape({
       params: PropTypes.object.isRequired,
     }).isRequired,
@@ -73,18 +71,10 @@ class ChatMessageList extends React.Component {
             Start messaging…
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Use
-            {' '}
-            <strong>Global</strong>
-            {' '}
-to explore communities around here.
+            Use <strong>Global</strong> to explore communities around here.
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Use
-            {' '}
-            <strong>Recents</strong>
-            {' '}
-to see your recent conversations.
+            Use <strong>Recents</strong> to see your recent conversations.
           </Typography>
         </Paper>
       );

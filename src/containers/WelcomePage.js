@@ -8,14 +8,15 @@ const mapStateToProps = state => ({
   error: state.services.errors.auth,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(
-  {
-    signup,
-    login,
-    recieveAuth,
-  },
-  dispatch,
-);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      signup,
+      login,
+      recieveAuth,
+    },
+    dispatch,
+  );
 
 export default connect(
   mapStateToProps,
