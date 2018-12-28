@@ -1,45 +1,47 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import moment from "moment";
-import {withStyles} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Avatar from "./Avatar";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import moment from 'moment';
+import { withStyles } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Avatar from './Avatar';
 
-import senderName from "../utils/sender-name";
-import randomColor from "../utils/color-from";
+import senderName from '../utils/sender-name';
+import randomColor from '../utils/color-from';
 
-const styles = (theme) => ({
+const styles = theme => ({
   messageWrapper: {
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
   },
-  messageWrappperFromMe: {
-    justifyContent: "flex-end",
+  messageWrapperFromMe: {
+    justifyContent: 'flex-end',
   },
   message: {
-    maxWidth: "70%",
-    minWidth: "10%",
+    maxWidth: '70%',
+    minWidth: '10%',
     padding: theme.spacing.unit,
     marginLeft: theme.spacing.unit * 2,
   },
   messageFromMe: {
     marginRight: theme.spacing.unit * 2,
-    backgroundColor: "#e6dcff",
+    backgroundColor: '#e6dcff',
   },
   statusMessage: {
-    width: "100%",
-    textAlign: "center",
+    width: '100%',
+    textAlign: 'center',
   },
   statusMessageUser: {
-    display: "inline",
+    display: 'inline',
   },
 });
 
-const ChatMessage = ({classes, content, sender, activeUser, createdAt, statusMessage}) => {
+const ChatMessage = ({
+  classes, content, sender, activeUser, createdAt, statusMessage,
+}) => {
   const isMessageFromMe = sender._id === activeUser._id;
 
   const displayedName = senderName(sender);
@@ -48,7 +50,11 @@ const ChatMessage = ({classes, content, sender, activeUser, createdAt, statusMes
     return (
       <div className={classes.messageWrapper}>
         <Typography className={classes.statusMessage}>
-          <Typography variant="caption" style={{color: randomColor(sender._id)}} className={classes.statusMessageUser}>
+          <Typography
+            variant="caption"
+            style={{ color: randomColor(sender._id) }}
+            className={classes.statusMessageUser}
+          >
             {displayedName}
           </Typography>
           {content}
@@ -63,10 +69,16 @@ const ChatMessage = ({classes, content, sender, activeUser, createdAt, statusMes
   const userAvatar = <Avatar colorFrom={sender._id}>{displayedName}</Avatar>;
 
   return (
-    <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
+    // eslint-disable-next-line
+    <div
+      className={classNames(
+        classes.messageWrapper,
+        isMessageFromMe && classes.messageWrappperFromMe,
+      )}
+    >
       {!isMessageFromMe && userAvatar}
       <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
-        <Typography variant="caption" style={{color: randomColor(sender._id)}}>
+        <Typography variant="caption" style={{ color: randomColor(sender._id) }}>
           {displayedName}
         </Typography>
         <Typography variant="body1">{content}</Typography>
@@ -80,12 +92,23 @@ const ChatMessage = ({classes, content, sender, activeUser, createdAt, statusMes
 };
 
 ChatMessage.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
-  content: PropTypes.string,
-  sender: PropTypes.object,
-  activeUser: PropTypes.object,
-  createdAt: PropTypes.string,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  content: PropTypes.string.isRequired,
+  sender: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
+  activeUser: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  createdAt: PropTypes.string.isRequired,
   statusMessage: PropTypes.bool,
+};
+
+ChatMessage.defaultProps = {
+  statusMessage: false,
 };
 
 export default withStyles(styles)(ChatMessage);

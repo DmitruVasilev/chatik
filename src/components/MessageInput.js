@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-import Input from "@material-ui/core/Input";
-import Button from "@material-ui/core/Button";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
-const styles = (theme) => ({
+const styles = theme => ({
   messageInputWrapper: {
-    position: "fixed",
-    left: "auto",
+    position: 'fixed',
+    left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 320px)`,
+    width: 'calc(100% - 320px)',
     padding: theme.spacing.unit * 3,
   },
   messageInput: {
@@ -20,8 +20,16 @@ const styles = (theme) => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    showJoinButton: PropTypes.bool.isRequired,
+    onJoinButtonClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
   state = {
-    value: "",
+    value: '',
   };
 
   handleValueChange = (event) => {
@@ -31,28 +39,37 @@ class MessageInput extends React.Component {
   };
 
   handleKeyPress = (event) => {
-    const {value} = this.state;
+    const { value } = this.state;
 
-    if (event.key === "Enter" && value) {
+    if (event.key === 'Enter' && value) {
       this.props.sendMessage(value);
-      this.setState({value: ""});
+      this.setState({ value: '' });
     }
   };
 
   render() {
-    const {classes, showJoinButton, onJoinButtonClick} = this.props;
+    const {
+      classes, showJoinButton, onJoinButtonClick, disabled,
+    } = this.props;
 
     return (
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>
           {showJoinButton ? (
-            <Button fullWidth variant="contained" color="primary" onClick={onJoinButtonClick}>
+            <Button
+              fullWidth
+              variant="raised"
+              color="primary"
+              disabled={disabled}
+              onClick={onJoinButtonClick}
+            >
               Join
             </Button>
           ) : (
             <Input
               fullWidth
               placeholder="Type your message…"
+              disabled={disabled}
               value={this.state.value}
               onChange={this.handleValueChange}
               onKeyPress={this.handleKeyPress}
@@ -63,12 +80,5 @@ class MessageInput extends React.Component {
     );
   }
 }
-
-MessageInput.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
-  onJoinButtonClick: PropTypes.func.isRequired,
-  showJoinButton: PropTypes.bool,
-  sendMessage: PropTypes.func.isRequired,
-};
 
 export default withStyles(styles)(MessageInput);
