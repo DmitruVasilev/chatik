@@ -25,9 +25,10 @@ const Chat = ({
   joinChat,
   sendMessage,
   isConnected,
+  match,
 }) => (
   <main className={classes.chatLayout}>
-    <ChatMessageList messages={messages} activeUser={activeUser} />
+    <ChatMessageList messages={messages} activeUser={activeUser} match={match} />
     {activeChat && (
       <MessageInput
         disabled={!isConnected}
@@ -60,6 +61,9 @@ Chat.propTypes = {
     isMember: PropTypes.bool.isRequired,
     isCreator: PropTypes.bool.isRequired,
     isChatMember: PropTypes.bool.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
   }).isRequired,
   joinChat: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,

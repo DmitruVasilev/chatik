@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
+import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -87,15 +88,14 @@ class NewChatButton extends React.Component {
 
     return (
       <React.Fragment>
-        <Button
-          variant="fab"
+        <Fab
           color="primary"
           disabled={disabled}
           className={classes.newChatButton}
           onClick={this.toggleModal}
         >
           <AddIcon />
-        </Button>
+        </Fab>
         <Modal open={open} className={classes.modalWrapper} onClose={this.toggleModal}>
           <Paper className={classes.modal}>
             <Typography variant="title" id="modal-title">

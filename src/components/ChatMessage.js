@@ -73,7 +73,7 @@ const ChatMessage = ({
     <div
       className={classNames(
         classes.messageWrapper,
-        isMessageFromMe && classes.messageWrappperFromMe,
+        isMessageFromMe && classes.messageWrapperFromMe,
       )}
     >
       {!isMessageFromMe && userAvatar}

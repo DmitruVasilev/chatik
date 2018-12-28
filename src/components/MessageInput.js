@@ -58,7 +58,7 @@ class MessageInput extends React.Component {
           {showJoinButton ? (
             <Button
               fullWidth
-              variant="raised"
+              variant="contained"
               color="primary"
               disabled={disabled}
               onClick={onJoinButtonClick}
