@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-xexport default connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(ChatPage);
